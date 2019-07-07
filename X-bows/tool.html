@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>X-Bows | Mechanical Ergonomic Keyboard</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./img/iconfont.js"></script>
+    <link rel="shortcut icon" href="favicon.icon" type="image/x-icon">
+
+</head>
+<body id="alpha" class="tool">
+    <div class="site-layout">
+        <div class="message">
+            <p class="message__text">
+                Free Shipping Worldwide for a Limited Time Only!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </p>
+            <svg id="msgIcon" class="message__icon" aria-hidden="true">
+                <use xlink:href="#icon-baseline-close-px"></use>
+            </svg>
+        </div>  
+        <div class="navbar">
+            <h1 id=logo class="navbar__logo">X-Bows Mechanical Ergonomic Keyboard</h1>
+            <div class="navbar__home">
+                <p id=home>Home</p>
+            </div>
+            <div class="navbar__help">
+                <p id=help>Help</p>
+            </div>
+            <div class="navbar__tool">
+                <p id=tool>Tool</p>
+            </div>
+            <div class="navbar__tips">
+                <p id=tips>Tips</p>
+            </div>
+            <div class="navbar__search">
+                <p id=search>Download</p>
+            </div>
+        </div>
+        <div class="main">
+            <p>todo...</p>
+        </div>
+    </div>
+    <script>
+
+        const arr = ["help", "tool", "tips", "search"]
+        let selected = "tool"
+        let hovered = ""
+        alpha.onmousemove=e => {
+            console.log(e)
+        }
+        select(selected)
+
+        function unselect (e) {
+            document.getElementById(e).style.color="white"
+            document.getElementById(e).style.backgroundColor="#313131"
+        }
+        function select (e) {
+            document.getElementById(e).style.color="#313131"
+            document.getElementById(e).style.backgroundColor = "white"
+        }
+
+        function onEnter(e) {
+            const which = e.srcElement.childNodes[0].data.toLowerCase()
+            hover = which
+            if (hover == selected) {
+            } else {
+                const hover_i = arr.indexOf(hover)
+                const selected_i = arr.indexOf(selected)
+                if(hover_i>selected_i) {
+                    let time = 0
+                    for(let i=selected_i; i<hover_i; i++) {
+                        time += 30
+                        setTimeout(unselect, time, arr[i]); 
+                        setTimeout(select, time, arr[i+1]); 
+                    }
+                } else {
+                    let time = 0
+                    for(let i=selected_i; i>hover_i; i--) {
+                        time += 30
+                        setTimeout(unselect, time, arr[i]); 
+                        setTimeout(select, time, arr[i-1]); 
+                    }
+                }
+            }
+        }
+        function onLeave(e) {
+            if (hover == selected) {
+
+            } else {
+                const hover_i = arr.indexOf(hover)
+                const selected_i = arr.indexOf(selected)
+                if(hover_i > selected_i) {
+                    let time = 0
+                    for(let i=hover_i; i>selected_i; i--) {
+                        time += 30
+                        setTimeout(unselect, time, arr[i]); 
+                        setTimeout(select, time, arr[i-1]); 
+                    }
+                } else {
+                    let time = 0
+                    for(let i=hover_i; i<selected_i; i++) {
+                        time += 30
+                        setTimeout(unselect, time, arr[i]); 
+                        setTimeout(select, time, arr[i+1]); 
+                    }
+                }
+            }
+        }
+        function openOfficial() {
+            window.open("https://x-bows.com/")
+        }
+
+        localStorage.getItem("xbowsMsg") === null?
+            localStorage.setItem("xbowsMsg", 2):
+            null
+        let xbowsMsg = localStorage.getItem("xbowsMsg")
+        if (xbowsMsg < 1) {
+            document.getElementsByClassName("message")[0].style.display="none"
+        }
+        msgIcon.onclick = () => {
+            document.getElementsByClassName("message")[0].style.display="none"
+            localStorage.setItem("xbowsMsg", localStorage.getItem("xbowsMsg") - 1)
+        }
+
+        logo.onclick = openOfficial;
+        home.onclick = openOfficial;
+        help.onclick = () => {
+            window.open("./help.html", "_self")
+        }
+        tool.onclick = () => {
+            window.open("./tool.html", "_self")
+        }
+        tips.onclick = () => {
+            window.open("./tips.html", "_self")
+        }
+        tool.onmouseenter = onEnter;
+        help.onmouseenter = onEnter;
+        tips.onmouseenter = onEnter;
+        search.onmouseenter = onEnter;
+
+        tool.onmouseleave = onLeave;
+        help.onmouseleave = onLeave;
+        tips.onmouseleave = onLeave;
+        search.onmouseleave = onLeave;
+
+        // main
+
+    </script>
+</body>
+</html>

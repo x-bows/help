@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>X-Bows | Mechanical Ergonomic Keyboard</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./img/iconfont.js"></script>
+    <link rel="shortcut icon" href="favicon.icon" type="image/x-icon">
+
+</head>
+<body id="alpha" class="help">
+    <div class="site-layout">
+        <div class="message">
+            <p class="message__text">
+                Free Shipping Worldwide for a Limited Time Only!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </p>
+            <svg id="msgIcon" class="message__icon" aria-hidden="true">
+                <use xlink:href="#icon-baseline-close-px"></use>
+            </svg>
+        </div>  
+        <div class="navbar">
+            <h1 id=logo class="navbar__logo">X-Bows Mechanical Ergonomic Keyboard</h1>
+            <div class="navbar__home">
+                <p id=home>Home</p>
+            </div>
+            <div class="navbar__help">
+                <p id=help>Help</p>
+            </div>
+            <div class="navbar__tool">
+                <p id=tool>Tool</p>
+            </div>
+            <div class="navbar__tips">
+                <p id=tips>Tips</p>
+            </div>
+            <div class="navbar__search">
+                <p id=search>
+                    <a href="./detail_manual.pdf" download="X-Bows_Detailed_Manual">
+                    Download
+                </a></p>
+            </div>
+        </div>
+        <div class="main">
+            <div class="TOC" width="400px" height="100%">
+                <h2>Layers</h2>
+                <h3>More, More Keys</h3>
+                <p>X-Bows only has 86 keys on 1 keyboard, what if we wanna more keys?<br><br>X-Bows offers multi logical layouts to let customers customize, and you can choose 1 layout or switch to another 1.<br><br>We call the layouts on X-bows <b>Layers</b>.</p>
+            </div>
+            <div class="content">
+            </div>
+        </div>
+    </div>
+    <img src="img/left.png" alt="backward" class="left">
+    <img src="img/right.png" alt="forward" class="right">
+    <script>
+
+        const arr = ["help", "tool", "tips", "search"]
+        let selected = "help"
+        let hovered = ""
+
+        select(selected)
+
+        function unselect (e) {
+            document.getElementById(e).style.color="white"
+            document.getElementById(e).style.backgroundColor="#313131"
+        }
+        function select (e) {
+            document.getElementById(e).style.color="#313131"
+            document.getElementById(e).style.backgroundColor = "white"
+        }
+
+        function onEnter(e) {
+            const which = e.srcElement.childNodes[0].data.toLowerCase()
+            hover = which
+            if (hover == selected) {
+            } else {
+                const hover_i = arr.indexOf(hover)
+                const selected_i = arr.indexOf(selected)
+                if(hover_i>selected_i) {
+                    let time = 0
+                    for(let i=selected_i; i<hover_i; i++) {
+                        time += 10
+                        setTimeout(unselect, time, arr[i]); 
+                        setTimeout(select, time, arr[i+1]); 
+                    }
+                } else {
+                    let time = 0
+                    for(let i=selected_i; i>hover_i; i--) {
+                        time += 10
+                        setTimeout(unselect, time, arr[i]); 
+                        setTimeout(select, time, arr[i-1]); 
+                    }
+                }
+            }
+        }
+        function onLeave(e) {
+            if (hover == selected) {
+
+            } else {
+                const hover_i = arr.indexOf(hover)
+                const selected_i = arr.indexOf(selected)
+                if(hover_i > selected_i) {
+                    let time = 0
+                    for(let i=hover_i; i>selected_i; i--) {
+                        time += 10
+                        setTimeout(unselect, time, arr[i]); 
+                        setTimeout(select, time, arr[i-1]); 
+                    }
+                } else {
+                    let time = 0
+                    for(let i=hover_i; i<selected_i; i++) {
+                        time += 10
+                        setTimeout(unselect, time, arr[i]); 
+                        setTimeout(select, time, arr[i+1]); 
+                    }
+                }
+            }
+        }
+        function openOfficial() {
+            window.open("https://x-bows.com/")
+        }
+
+        localStorage.getItem("xbowsMsg") === null?
+            localStorage.setItem("xbowsMsg", 2):
+            null
+        let xbowsMsg = localStorage.getItem("xbowsMsg")
+        if (xbowsMsg > 0) {
+            document.getElementsByClassName("message")[0].style.display="flex"
+        }
+        msgIcon.onclick = () => {
+            document.getElementsByClassName("message")[0].style.display="none"
+            localStorage.setItem("xbowsMsg", localStorage.getItem("xbowsMsg") - 1)
+        }
+
+        logo.onclick = openOfficial;
+        home.onclick = openOfficial;
+        help.onclick = () => {
+            window.open("./help.html", "_self")
+        }
+        tool.onclick = () => {
+            window.open("./tool.html", "_self")
+        }
+        tips.onclick = () => {
+            window.open("./tips.html", "_self")
+        }
+        tool.onmouseenter = onEnter;
+        help.onmouseenter = onEnter;
+        tips.onmouseenter = onEnter;
+        search.onmouseenter = onEnter;
+
+        tool.onmouseleave = onLeave;
+        help.onmouseleave = onLeave;
+        tips.onmouseleave = onLeave;
+        search.onmouseleave = onLeave;
+
+        // main
+        const arrh2 = [
+            "Layers", 
+            "Modes", 
+            "Remap", 
+            "Switch",
+            "More?", 
+        ]
+        const arrh3 = [
+            "More, More Keys",
+            "Different Layers",
+            "Customizable",
+            "Temp/Permanent?",
+            "Macro, Light"
+        ]
+        const arrh2color = [
+            "#f3c823",
+            "#39d9d7",
+            "#28afff",
+            "#7751dd",
+            "#e182a8",
+            "#ff2e55",
+            "#34b4ff",
+            "#39d9d7",
+            "#007aff",
+            "#dc6c99",
+            "#ed732e",
+            "#4ba1ff"
+        ]
+        const arrp = [
+            "X-Bows only has 86 keys on 1 keyboard, what if we wanna more keys?<br><br>X-Bows offers multi logical layouts to let customers customize, and you can choose 1 layout or switch to another 1.<br><br>We call the layouts on X-bows <b>Layers</b>.",
+            "When X-Bows power on or power off, it only stored 4 <b>Layers</b> on it self, 1 default, and 3 customization.<br><br>When Driver is running, the software can add infinite <b>Layers</b> logically, but users usually don't need so much, so it add 1 Layer when driver is running.<br><br>Driver Layer is more powerful but stored on PC, not portable like Custom Layers.",
+            "You can define almost every key to be what you want.<br><br>Remap 1 key to a comfortable key position, a sequence of keys strokes, a prefered layout, open specific software, simulate mouse, more and more...",
+            "You can use all keys on every Layers, but by default only 1 Layer selected. How can we use other keys defined on other Layers?<br><br>1. Temp use.<br><br>2. Permanent use.",
+            "Yes, you can define you sequence of key strokes, open specific software, simulate mouse action, define light effect when key press or how keyboard looks like, you can control every LET light to do what you want...<br><br> Click <a href=\"./detail_manual.pdf\" download=\"detailed_manual.pdf\"><b>Download</b></a> to see detailed manual"
+            
+        ]
+        const arrpic = [
+            "./img/Layers.png",
+            "./img/Modes.png",
+            "./img/Remap.png",
+            "./img/Switch.png",
+            "./img/Light.jpg"
+        ]
+        let cur = 0
+        if (cur==0) {
+            document.getElementsByClassName("left")[0].style.display = "none";
+        }
+        const right = document.getElementsByClassName("right")[0];
+        right.onclick = () => {
+            const eh2 = document.getElementsByTagName("h2")[0]
+            eh2.innerHTML = arrh2[cur+1]
+            eh2.style.color = arrh2color[cur+1]
+            const eh3 = document.getElementsByTagName("h3")[0]
+            eh3.innerHTML = arrh3[cur+1]
+            const ep = document.getElementsByTagName("p")[6]
+            ep.innerHTML = arrp[cur+1]
+            
+            const epic = document.getElementsByClassName("content")[0]
+            epic.style.backgroundImage = "url(" + arrpic[cur+1] + ")"
+            if (cur + 1 == arrh2.length - 1) {
+                document.getElementsByClassName("right")[0].style.display = "none";
+            }
+            document.getElementsByClassName("left")[0].style.display = "block";
+            if (cur == arrh2.length - 1) {
+
+            } else {
+                cur +=1    
+            }
+        }
+        const left = document.getElementsByClassName("left")[0];
+        left.onclick = () => {
+            const eh2 = document.getElementsByTagName("h2")[0]
+            eh2.innerHTML = arrh2[cur-1]
+            eh2.style.color = arrh2color[cur-1]
+            const eh3 = document.getElementsByTagName("h3")[0]
+            eh3.innerHTML = arrh3[cur-1]
+            const ep = document.getElementsByTagName("p")[6]
+            ep.innerHTML = arrp[cur-1]
+            const epic = document.getElementsByClassName("content")[0]
+            epic.style.backgroundImage = "url(" + arrpic[cur-1] + ")"
+            if (cur-1 == 0) {
+                document.getElementsByClassName("left")[0].style.display = "none";
+            }
+            document.getElementsByClassName("right")[0].style.display = "block";
+            if (cur == 0) {
+
+            } else {
+                cur -= 1
+            }
+        }
+        // img: big <=> small
+        let imgBig = document.getElementsByClassName("content")[0]
+        let isBig = false;
+        let picBig = document.createElement("div")
+            picBig.id = "picBig"
+            picBig.style.position = "fixed"
+            picBig.style.width = "100%";
+            picBig.style.height = "100%";
+            picBig.style.backgroundImage = "url(" + arrpic[cur] + ")"
+            picBig.style.backgroundAttachment = "fixed"
+            picBig.style.backgroundSize = "100% 100%"
+            picBig.style.backgroundRepeat = "no-repeat"
+            picBig.style.position = "center"
+            picBig.style.zIndex = "100"
+            picBig.style.display = "none"
+            alpha.appendChild(picBig)
+        let picBlack = document.createElement("div")
+            picBlack.id = "picBlack"
+            picBlack.style.position = "fixed"
+            picBlack.style.width = "100%";
+            picBlack.style.height = "100%";
+            picBlack.style.backgroundColor = "white"
+            picBlack.style.zIndex = "50"
+            picBlack.style.display = "none"
+            alpha.appendChild(picBlack)
+        imgBig.onclick = () => {
+            if (!isBig) {
+                picBig.style.backgroundImage = "url(" + arrpic[cur] + ")"
+                picBig.style.display = "block"
+                picBlack.style.display = "block"
+                isBig = true
+            }
+        }
+        picBig.onclick = () => {
+            if (isBig) {
+                picBig.style.display = "none"
+                picBlack.style.display = "none"
+                isBig = false
+            }
+        }
+    </script>
+</body>
+</html>

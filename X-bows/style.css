@@ -1,0 +1,176 @@
+/* remove margin */
+    body {
+        margin: 0;
+        zoom: 1.1;
+    }
+    a:link {
+        color: inherit;
+    }
+/* flex */
+    .site-layout {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+        .message {
+            order: 0;
+            flex-grow: 1;
+            flex-shrink: 1;
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+
+            z-index: 1;
+
+            height: 88px;
+            background: #444444;
+            /* center horizontal */
+            width: 100%;
+            margin: 0 auto;
+            display: none;
+        }
+            .message__text {
+                order: 0;
+
+                font-size: 28px;
+                color: white;
+
+            }
+            .message__icon {
+                cursor: pointer;
+                width: 2em;
+                height: 2em;
+                vertical-align: -0.15em;
+                fill: grey;
+                overflow: hidden;
+            }
+        .navbar {
+            order: 0;
+            flex-grow: 1;
+            flex-shrink: 1;
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: flex-start;
+
+            background: #313131;
+            /* background: red; */
+            
+            z-index: 1;
+
+            height: 55px;
+            /* center horizontal */
+            width: 100%;
+            margin: 0 auto;
+
+            position: relative;
+        }
+            .navbar__logo {
+                position: absolute;
+                width: 44px;
+                height: 44px;
+                left: 20%;
+                top: -30%;
+                text-indent: -9999px;
+                background-origin: border-box;
+                background: url(./img/logo.png) no-repeat;
+                background-size: 100% auto;
+                cursor: pointer;
+            }
+            .navbar div {
+                position: absolute;
+                cursor: pointer;
+                color: white;
+            }
+            
+            .navbar__home {
+                left: 30%;
+            }
+
+            .navbar__help {
+                left: 35%;
+            }
+            .navbar__tool {
+                left: 40%;
+            }
+            .navbar__tips {
+                left: 45%
+            }
+            .navbar__search {
+                left: 75%;
+            }
+
+        .main {
+            order: 0;
+            flex-grow: 1;
+            flex-shrink: 1;
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: flex-start;
+
+        }
+        div.TOC {
+            height: 600px;
+            width: 300px;
+            position: fixed;
+            left: 10%;
+        }
+            ul{
+                list-style: none;
+            }
+        div.content {
+            height: 510px;
+            width: 800px;
+            box-shadow: 0px 0px 22px 13px rgba(0,0,0,0.75);
+            background-image: url(img/layers.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            position: fixed;
+            left: 40%;
+            top: 18%;
+            background-position: center;
+        }
+
+.help h2 {
+    color: #f3c823;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0;
+    margin-top: 56px;
+}
+.help h3 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 36px;
+}
+.help .main p {
+    font-size: 15px;
+    font-weight: 300;
+}
+.left {
+    position: fixed;
+    left: 10%;
+    top: 85%;
+    zoom: 0.3;
+}
+.right:hover, .left:hover {
+    cursor: pointer;
+    background-color: grey;
+}
+.right {
+    position: fixed;
+    left: 25%;
+    top: 85%;
+    zoom: 0.3;
+}
